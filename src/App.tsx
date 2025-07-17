@@ -1,20 +1,18 @@
-import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import { Thumbmark } from "@thumbmarkjs/thumbmarkjs";
 import { useEffect, useState } from "react";
 
 function App() {
 	const [visitorId, setVisitorId] = useState("");
 
 	useEffect(() => {
-		// Load FingerprintJS instance
-		FingerprintJS.load().then((fp) => {
-			// Get the visitor's fingerprint
-			fp.get().then((result) => {
-				setVisitorId(result.visitorId);
-				// You can POST this ID to backend API if needed
-				// fetch('/api/login', { method: 'POST', body: JSON.stringify({ fingerprint: result.visitorId }) })
-			});
+		// Create Thumbmark instance
+		const tm = new Thumbmark();
+		// Get fingerprint asynchronously
+		tm.get().then((fp) => {
+			console.log(fp); // Print fingerprint in console
+			setVisitorId(fp.thumbmark); // Save fingerprint to state
 		});
-	}, []);
+	}, []); // Run effect only once on mount
 
 	return (
 		<div>
