@@ -16,7 +16,6 @@ function App() {
 
 	return (
 		<div>
-			<h1>FingerprintJS Demo</h1>
 			<p>
 				<strong>Visitor ID:</strong> {visitorId}
 			</p>
